@@ -1,5 +1,6 @@
 using System;
 
+// Class lưu in4 của player ở mức độ Client-server (k phải data trong game)
 [Serializable]
 public class ClientData
 {

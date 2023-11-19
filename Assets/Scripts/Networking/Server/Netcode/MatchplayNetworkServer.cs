@@ -33,7 +33,9 @@ public class MatchplayNetworkServer : IDisposable
     {
         this.networkManager = networkManager;
 
+        // Callback gọi khi có 1 client xin quyền kết nối
         this.networkManager.ConnectionApprovalCallback += ApprovalCheck;
+        // Callback khi server start
         this.networkManager.OnServerStarted += OnNetworkReady;
 
         Instance = this;
@@ -111,8 +113,12 @@ public class MatchplayNetworkServer : IDisposable
         NetworkManager.Singleton.SceneManager.LoadScene("Gameplay", LoadSceneMode.Single);
     }
 
+    /// <summary>
+    /// Callback để check xem client có được chấp nhận để tham gia hay không
+    /// </summary>
     private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
     {
+        // Check xem server đã đầy hay game đã bắt đầu chưa, nếu rồi thì k chấp nhận
         if (request.Payload.Length > MaxConnectionPayload || gameHasStarted)
         {
             response.Approved = false;

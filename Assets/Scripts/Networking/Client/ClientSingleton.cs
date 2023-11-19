@@ -42,7 +42,7 @@ public class ClientSingleton : MonoBehaviour
     public async Task CreateClient()
     {
         gameManager = new ClientGameManager();
-        
+
         await gameManager.InitAsync();
     }
 
