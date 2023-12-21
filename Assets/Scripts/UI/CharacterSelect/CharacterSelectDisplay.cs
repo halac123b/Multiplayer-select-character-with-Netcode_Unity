@@ -21,7 +21,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
     private List<CharacterSelectButton> characterButtons = new List<CharacterSelectButton>();
 
     // NetworkList<INetworkSerializable>: list dùng trong network để chứa các biến network
-        // Chỉ có thể modify bởi Server
+    // Chỉ có thể modify bởi Server
     private NetworkList<CharacterSelectState> players;
 
     private void Awake()
@@ -44,7 +44,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
             }
 
             // Một hàm rất mạnh của NetworkList invoke khi list thay đổi
-                // Được invoke với tất cả client
+            // Được invoke với tất cả client
             players.OnListChanged += HandlePlayersStateChanged;
         }
 
@@ -178,6 +178,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
             );
         }
 
+        // Check nếu tất cả player đã lock thì start game
         foreach (var player in players)
         {
             if (!player.IsLockedIn) { return; }
